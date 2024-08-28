@@ -25,7 +25,7 @@ export
 guard-%:
 	@#$(or ${$*}, $(error $* is not set))
 
-## Call entrypoint
+## version-data
 version-data: up
 	$(DOCKER_COMPOSE_EXEC) python ./cybulde/version_data.py
 
