@@ -23,3 +23,22 @@ def initialize_dvc() -> None:
     run_shell_command("dvc config core.autostage true")
     run_shell_command("git add .dvc")
     run_shell_command("git commit -nm 'initialized DVC'")
+
+
+
+def initialized_dvc_storage(dvc_remote_name:str, dvc_remote_url:str) -> None:
+    if not run_shell_command("dvc remote list"):
+        DATA_UTILS_LOGGER.info("initializing DVC storage")
+        run_shell_command(f"dvc remote add -d {dvc_remote_name} {dvc_remote_url}")
+        run_shell_command("git add .dvc/config")
+        run_shell_command(f"git commit -nm 'configured DVC storage at: {dvc_remote_url}'")
+        
+    else:
+        DATA_UTILS_LOGGER.info("DVC storage is already initialized")
+
+
+
+
+
+
+    
